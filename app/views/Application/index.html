@@ -1,0 +1,59 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+
+<div class="inline field">
+    <div class="ui right pointing label">
+        Hello please input name of movie.
+    </div>
+    <div class="ui input">
+        <input class="ui input" type="text" placeholder="Search..." ng-model="inputValue">
+    </div>
+    <button class="ui button" ng-click="searchMovie(inputValue)">Search</button>
+</div>
+<div style=" width: 900px; height: 600px">
+    <table ng-table="tableParams" class="ui called striped table">
+        <tr ng-repeat="movie in $data">
+            <td title="'id'">{{movie.id}}</td>
+            <td title="'title'">{{movie.title}}</td>
+            <td title="'overview'">{{movie.overview}}</td>
+            <td title="'add button'">
+                <button ng-click="openModal(movie)" class="medium ui button">add</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="ui modal" id="modalWindow">
+    <i class="close icon"></i>
+
+    <div class="header">
+        Select your favorites list
+    </div>
+    <div class="content">
+       <div class="ui selection dropdown" id="selectList">
+            <input name="listInput" type="hidden" required/>
+
+            <div class="default text">Select list ...</div>
+            <i class="dropdown icon"></i>
+
+            <div class="menu">
+                <div data-value="{{list.name}}" class="item" ng-repeat="list in listsForMovie"
+                     ng-click="selectListFunc(list);">
+                    <div>{{list.name}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="ui left pointing basic label" ng-show="listsForMovie.length == 0">
+            You do not have lists, you can create them <a class="ui blue button tiny" href="@{ListController.lists()}">here</a>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black deny button">
+            Cancel
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="saveMovie()">
+            Add movie
+        </div>
+    </div>
+</div>

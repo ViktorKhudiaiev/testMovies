@@ -1,0 +1,31 @@
+#{extends 'main.html' /}
+#{set title:'View Movies' /}
+
+<div ng-controller="MovieController">
+    <div class="ui selection dropdown" id="selectList">
+        <input name="listInput" type="hidden"/>
+
+        <div class="default text">Select list ...</div>
+        <i class="dropdown icon"></i>
+
+        <div class="menu">
+            <div data-value="{{list.name}}" class="item" ng-repeat="list in lists"
+                 ng-click="getData(list);">
+                <div>{{list.name}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div style=" width: 900px; height: 600px">
+        <table ng-table="tableParams" class="ui called striped table">
+            <tr ng-repeat="movie in $data">
+                <td title="'id'">{{movie.id}}</td>
+                <td title="'title'">{{movie.title}}</td>
+                <td title="'overview'">{{movie.overview}}</td>
+                <td title="'add button'">
+                    <a href="/movie/{{movie.id}}"  class="medium ui button">view</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

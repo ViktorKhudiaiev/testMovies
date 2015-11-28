@@ -1,0 +1,22 @@
+#{extends 'main.html' /}
+#{set title:'Lists' /}
+<div ng-controller="ListController">
+<div class="inline field">
+    <div class="ui  label">
+        Hello please input name of favorite list.
+    </div>
+    <div class="ui input">
+        <input  type="text" name="name" placeholder="Favorite list name..." ng-model="nameOfList">
+    </div>
+    <button class="ui button" type="submit" ng-click="saveList(nameOfList)">Add list</button>
+</div>
+
+
+<div style=" width: 900px; height: 600px">
+    <table ng-table="tableParams" class="ui called striped table">
+        <tr ng-repeat="list in $data">
+            <td title="'id'">{{list.id}}</td>
+            <td title="'name'">{{list.name}}</td>
+    </table>
+</div>
+</div>

@@ -1,0 +1,13 @@
+#{extends 'main.html' /}
+#{set title:'View Movie' /}
+
+<div class="ui three column grid">
+    <div class="column">
+        <div class="ui fluid image">
+            <div class="ui black ribbon label">
+                <i class="record icon"></i> ${movie.title}
+            </div>
+        ${movie.overview}
+        </div>
+    </div>
+</div>
